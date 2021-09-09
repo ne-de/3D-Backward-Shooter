@@ -29,16 +29,17 @@ public class ScoreManager : MonoBehaviour
 
     void OnGUI()
     {
-        if (GameManager.GameOver)
-        {
-            GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 800, 800), "Game Over\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
-            GUI.skin.label.fontSize = 40;
-        }
-        else if (!GameManager.GameStarted)
+        if (GameManager.GamePreStart)
         {
             GUI.color = Color.red;
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 800, 800), "Tap to start");
+            GUI.skin.label.fontSize = 40;
+        }
+
+        else if (GameManager.GameOver)
+        {
+            GUI.color = Color.red;
+            GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 800, 800), "Game Over\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
             GUI.skin.label.fontSize = 40;
         }
         else if (GameManager.GameWon)

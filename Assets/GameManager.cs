@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static bool GameOver = false;
+    public static bool GamePreStart = false;
     public static bool GameStarted = false;
     public static bool GameWon = false;
 
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
         EnemyAttack.OnEnemyHit += OnGameOver;
         EnemySpawner.OnMaxEnemiesSpawned += EnemySpawnCounter;
         EnemyDeath.OnEnemyDeath += EnemyDeathCounter;
+
+        GamePreStart = true;
     }
 
     private void EnemyDeathCounter()
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_enemyDeathCount == m_totalEnemieSpawned/* || winningLineCrossed*/)
         {
+            GameStarted = false;
             GameWon = true;
             Time.timeScale = 0;
             if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
@@ -40,7 +44,19 @@ public class GameManager : MonoBehaviour
                 //Restart current scene
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
+                GamePreStart = true;
             }
+        }
+    }
+
+    void OnGamePreStart()
+    {
+        GameOver = false;
+        GameWon = false;
+        Time.timeScale = 0;
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        {
+            OnGameStarted();
         }
     }
 
@@ -53,28 +69,27 @@ public class GameManager : MonoBehaviour
 
     void OnGameStarted()
     {
+        GameOver = false;
+        GamePreStart = false;
         Time.timeScale = 1;
         GameStarted = true;
     }
 
     private void Update()
     {
-        if (GameOver || !GameStarted)
+        if (GamePreStart)
+        {
+            OnGamePreStart();
+        }
+
+        if (GameOver)
         {
             if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
             {
-                if (GameOver)
-                {
-                    //Restart current scene
-                    Scene scene = SceneManager.GetActiveScene();
-                    SceneManager.LoadScene(scene.name);
-                    GameOver = false;
-                }
-                else
-                {
-                    //Start the game
-                    OnGameStarted();
-                }
+                //Restart current scene
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+                GameOver = false;
             }
         }
 
@@ -84,5 +99,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         EnemyAttack.OnEnemyHit -= OnGameOver;
+        EnemySpawner.OnMaxEnemiesSpawned -= EnemySpawnCounter;
+        EnemyDeath.OnEnemyDeath -= EnemyDeathCounter;
     }
 }
