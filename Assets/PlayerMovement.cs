@@ -2,11 +2,12 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector3 startPosition;
-
+    //PUBLIC
     public float moveSpeed;
     public float gravity = 20.0f;
 
+    //PRIVATE
+    private Vector3 startPosition;
     private Rigidbody _rb;
     private Vector3 _initialDrag;
     private float _movement;

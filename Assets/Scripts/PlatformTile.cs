@@ -3,31 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformTile : MonoBehaviour
-{
+{    
     public Transform startPoint;
     public Transform endPoint;
 
-    //private MeshRenderer m_oldTex;
-    //private MeshRenderer m_newTex;
-
-    //private void Start()
-    //{
-    //    m_oldTex = GetComponentInChildren<MeshRenderer>();
-    //    m_newTex = GetComponentInChildren<MeshRenderer>();
-    //}
-
-    private void Update()
-    {
-        
-    }
-
-    public void DeactivateWinningLine()
-    {
-        this.transform.localScale *= 3;
-    }
+    public GameObject tileGraphic;
+    public Material winningTileMat;
+    public BoxCollider winningLineCollider;
 
     public void ActivateWinningLine()
     {
-        this.transform.localScale *= 8;
+        tileGraphic.GetComponent<MeshRenderer>().material = winningTileMat;
+        winningLineCollider.enabled = true;  
     }
 }

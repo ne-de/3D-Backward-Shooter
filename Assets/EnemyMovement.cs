@@ -2,11 +2,13 @@
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform player;
+    //PUBLIC
     [Range(1, 7)]
     public float enemySpeed = 4;
     public float enemySprintingSpeed = 8;
+    public Transform player;
 
+    //PRIVATE
     private float m_baseEnemySpeed;
     private float m_enemyReferenceSpeed;
     private float m_actualEnemySpeed;

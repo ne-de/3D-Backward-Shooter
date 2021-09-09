@@ -4,24 +4,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //PUBLIC
     public static bool GameOver = false;
     public static bool GamePreStart = false;
     public static bool GameStarted = false;
     public static bool GameWon = false;
 
+    //PRIVATE
     private int m_enemyDeathCount;
     private int m_totalEnemieSpawned;
+    private bool m_winningLineCrossed;
 
     private void Start()
     {
         EnemyAttack.OnEnemyHit += OnGameOver;
         EnemySpawner.OnMaxEnemiesSpawned += EnemySpawnCounter;
         EnemyDeath.OnEnemyDeath += EnemyDeathCounter;
+        GoalTileBehavior.OnWinningLineCrossed += GoalLineCrossed;
 
         GamePreStart = true;
     }
 
-    private void EnemyDeathCounter()
+    void EnemyDeathCounter()
     {
         m_enemyDeathCount++;
     }
@@ -31,9 +35,26 @@ public class GameManager : MonoBehaviour
         m_totalEnemieSpawned = spawnerSize;
     }
 
-    private void WinCondition()
+    void GoalLineCrossed()
     {
-        if (m_enemyDeathCount == m_totalEnemieSpawned/* || winningLineCrossed*/)
+        m_winningLineCrossed = true;
+    }
+
+    void OnGamePreStart()
+    {
+        GameStarted = false;
+        GameOver = false;
+        GameWon = false;
+        Time.timeScale = 0;
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        {
+            OnGameStarted();
+        }
+    }
+
+    void WinCondition()
+    {
+        if (m_enemyDeathCount == m_totalEnemieSpawned || m_winningLineCrossed)
         {
             GameStarted = false;
             GameWon = true;
@@ -46,17 +67,6 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(scene.name);
                 GamePreStart = true;
             }
-        }
-    }
-
-    void OnGamePreStart()
-    {
-        GameOver = false;
-        GameWon = false;
-        Time.timeScale = 0;
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
-        {
-            OnGameStarted();
         }
     }
 

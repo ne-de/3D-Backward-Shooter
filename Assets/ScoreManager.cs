@@ -31,26 +31,27 @@ public class ScoreManager : MonoBehaviour
     {
         if (GameManager.GamePreStart)
         {
-            GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 800, 800), "Tap to start");
-            GUI.skin.label.fontSize = 40;
+            GUI.color = Color.white;
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 1000, 1000), "TAP TO START");
+            GUI.skin.label.fontSize = 30;
+            GUI.skin.label.fontStyle = FontStyle.Bold;
         }
 
         else if (GameManager.GameOver)
         {
             GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 800, 800), "Game Over\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
-            GUI.skin.label.fontSize = 40;
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 1000, 1000), "GAME OVER\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
+            GUI.skin.label.fontSize = 30;
         }
         else if (GameManager.GameWon)
         {
-            GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 800, 800), "YOU WON!\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
-            GUI.skin.label.fontSize = 40;
+            GUI.color = Color.cyan;
+            GUI.Label(new Rect(Screen.width / 2 - 160, Screen.height / 2 - 100, 1000, 1000), "YOU WON!\nScore: " + ((int)m_score) + "\nTap to restart");
+            GUI.skin.label.fontSize = 30;
         }
 
-        GUI.color = Color.green;
+        GUI.color = Color.white;
         GUI.Label(new Rect(30, 10, 800, 100), "Score: " + ((int)m_score));
-        GUI.skin.label.fontSize = 40;
+        GUI.skin.label.fontSize = 30;
     }
 }
