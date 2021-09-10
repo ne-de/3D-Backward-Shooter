@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 3117106808152217212}
   - component: {fileID: 7464969748463734897}
   - component: {fileID: 9203626063757058617}
-  - component: {fileID: 6992398545563716302}
   - component: {fileID: 5577449481432700692}
   m_Layer: 0
   m_Name: Player
@@ -190,22 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   gravity: 200
---- !u!114 &6992398545563716302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8650800636258051481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed3b335fcf062347910778d66990cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
-  objectToPool: {fileID: 103460030232249139, guid: 90dbcaa6ec27d8b48a603f93fbffd837,
-    type: 3}
-  amountToPool: 20
 --- !u!114 &5577449481432700692
 MonoBehaviour:
   m_ObjectHideFlags: 0

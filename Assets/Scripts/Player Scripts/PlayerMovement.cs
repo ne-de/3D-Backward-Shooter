@@ -4,7 +4,6 @@ public class PlayerMovement : MonoBehaviour
 {
     //PUBLIC
     public float moveSpeed = 5;
-    public float gravity = 20.0f;
 
     //PRIVATE
     private Vector3 startPosition;
@@ -23,9 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        //_rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
-        _rb.useGravity = false;
         startPosition = transform.position;
     }
 
@@ -62,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // We apply gravity manually
-        _rb.AddForce(new Vector3(0, -gravity * _rb.mass, 0));
         if (GameManager.GameStarted)
         {
 
