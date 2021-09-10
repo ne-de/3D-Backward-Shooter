@@ -18,7 +18,6 @@ public class GroundGenerator : MonoBehaviour
     //PRIVATE
     private List<PlatformTile> m_spawnedTiles = new List<PlatformTile>();
     private int tilesToWinningLine;
-    private int m_tileCount;
 
     private void Awake()
     {
@@ -48,47 +47,6 @@ public class GroundGenerator : MonoBehaviour
             {
                 spawnedTile.ActivateWinningLine();
             }
-        }
-
-        PlatformWall.OnWallContact += TilingSpeedDampener;
-        PlatformWall.OnWallClear += TilingSpeedRestorer;
-    }
-
-    void Update()
-    {
-        // Move the object upward in world space x unit/second.
-        //Increase speed the higher score we get
-        if (!GameManager.GameOver && GameManager.GameStarted)
-        {
-            transform.Translate(-m_spawnedTiles[0].transform.forward * Time.deltaTime * tilingSpeed, Space.World);
-        }
-
-        //if (mainCamera.WorldToViewportPoint(m_spawnedTiles[0].endPoint.position).z < 0)
-        //{
-        //    //Move the tile to the front if it's behind the Camera
-        //    PlatformTile tileTmp = m_spawnedTiles[0];
-        //    m_spawnedTiles.RemoveAt(0);
-        //    tileTmp.transform.position = m_spawnedTiles[m_spawnedTiles.Count - 1].endPoint.position - tileTmp.startPoint.localPosition;
-        //    m_spawnedTiles.Add(tileTmp);
-        //    m_tileCount++;
-        //}
-
-        //Debug.Log(m_tileCount);
-    }
-
-    void TilingSpeedDampener()
-    {
-        tilingSpeed = tilingSpeedDampened;
-    }
-
-    void TilingSpeedRestorer()
-    {
-        tilingSpeed = TilingReferenceSpeed;
-    }
-
-    private void OnDisable()
-    {
-        PlatformWall.OnWallContact -= TilingSpeedDampener;
-        PlatformWall.OnWallClear -= TilingSpeedRestorer;
+        }        
     }
 }

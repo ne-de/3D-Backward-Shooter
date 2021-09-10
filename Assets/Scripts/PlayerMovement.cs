@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     //PUBLIC
-    public float moveSpeed;
+    public float moveSpeed = 5;
     public float gravity = 20.0f;
 
     //PRIVATE
@@ -20,12 +20,10 @@ public class PlayerMovement : MonoBehaviour
         Screen.autorotateToLandscapeRight = false;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Input.mousePosition = 0;
         _rb = GetComponent<Rigidbody>();
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        //_rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
         startPosition = transform.position;
@@ -71,7 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
 #if UNITY_STANDALONE
             float moveH = Input.GetAxis("Mouse X");
-            Vector3 movement = new Vector3(moveH, 0, 0);
+            float moveZ = moveSpeed;
+            Vector3 movement = new Vector3(moveH * 50, 0, moveZ * 2);
             _rb.velocity = movement * moveSpeed * Time.fixedDeltaTime;
 #endif
         }

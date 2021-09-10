@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider)
+        if (collision.collider.tag == "Enemy")
         {
             gameObject.SetActive(false);
         }

@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
         else if (GameManager.GameOver)
         {
             GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 1000, 1000), "GAME OVER\nYour score is: " + ((int)m_score) + "\nTap screen to restart");
+            GUI.Label(new Rect(Screen.width / 2 - 160, Screen.height / 2 - 100, 1000, 1000), "GAME OVER\nScore: " + ((int)m_score) + "\nTap to restart");
             GUI.skin.label.fontSize = 30;
         }
         else if (GameManager.GameWon)

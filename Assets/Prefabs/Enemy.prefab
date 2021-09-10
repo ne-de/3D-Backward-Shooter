@@ -129,7 +129,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!136 &6204416222266192223
 CapsuleCollider:
@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b0307ab0fe0394594f5f8a14d069d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 4
-  enemySprintingSpeed: 8
+  enemySpeed: 8
+  enemySprintingSpeed: 12
   player: {fileID: 6226914101551145427, guid: 65d1c8eae5c0d0d42b1a8b2bd628ee05, type: 3}
 --- !u!114 &4251863241578367663
 MonoBehaviour:
